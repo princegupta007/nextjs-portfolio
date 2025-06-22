@@ -33,6 +33,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: '../public/favicon.ico',
+    shortcut: '../public/favicon.ico',
+    apple: '../public/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
@@ -42,6 +47,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="../public/favicon.ico" sizes="any" />
+      </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
         <ThemeProvider
           attribute="class"
