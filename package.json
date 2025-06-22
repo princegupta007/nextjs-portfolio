@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "npm install --legacy-peer-deps && next build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -47,7 +48,6 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
-    "eslint": "^9.29.0",
     "eslint-config-next": "13.5.1",
     "framer-motion": "^11.5.4",
     "glob": "^11.0.3",
@@ -78,6 +78,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.15"
+    "@types/nodemailer": "^6.4.15",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "13.5.1"
   }
 }
