@@ -38,7 +38,7 @@ export const saveContactMessage = async (data: Omit<ContactMessage, 'id' | 'stat
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error('Error saving contact message:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -66,7 +66,7 @@ export const scheduleCall = async (data: Omit<CallSchedule, 'id' | 'status' | 'c
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error('Error scheduling call:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -113,7 +113,7 @@ export const getBlogPosts = async (featured?: boolean, limit_count?: number) => 
     return { success: true, posts };
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    return { success: false, error: error.message, posts: [] };
+    return { success: false, error: error instanceof Error ? error.message : String(error), posts: [] };
   }
 };
 
@@ -158,7 +158,7 @@ export const getResources = async (category?: string, featured?: boolean) => {
     return { success: true, resources };
   } catch (error) {
     console.error('Error fetching resources:', error);
-    return { success: false, error: error.message, resources: [] };
+    return { success: false, error: error instanceof Error ? error.message : String(error), resources: [] };
   }
 };
 
@@ -195,7 +195,7 @@ export const getSiteSettings = async () => {
     }
   } catch (error) {
     console.error('Error fetching site settings:', error);
-    return { success: false, error: error.message, settings: null };
+    return { success: false, error: error instanceof Error ? error.message : String(error), settings: null };
   }
 };
 
@@ -222,7 +222,7 @@ export const trackResourceDownload = async (resourceId: string) => {
     return { success: true };
   } catch (error) {
     console.error('Error tracking download:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -236,6 +236,6 @@ export const trackPageView = async (page: string) => {
     return { success: true };
   } catch (error) {
     console.error('Error tracking page view:', error);
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
