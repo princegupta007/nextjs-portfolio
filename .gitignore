@@ -1,3 +1,5 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
 /node_modules
 /.pnp
@@ -15,7 +17,9 @@
 
 # misc
 .DS_Store
-*.log
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -32,14 +36,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-# IDE and editor files
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw*
+next-env.d.ts
 
 # bolt
 .bolt

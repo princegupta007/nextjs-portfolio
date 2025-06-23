@@ -11,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Mail, Phone, MapPin, Send, Loader2, Github, Linkedin, Twitter, Calendar } from 'lucide-react';
+import CallScheduler from './call-scheduler';
 
 const ContactSection = () => {
   const [ref, inView] = useInView({
@@ -42,23 +43,32 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // In a real application, you would send the data to your backend
-      console.log('Form submitted:', formData);
-      
-      toast.success('Message sent successfully! I\'ll get back to you soon.');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-        budget: '',
-        timeline: ''
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success('Message sent successfully! I\'ll get back to you soon.');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          budget: '',
+          timeline: ''
+        });
+      } else {
+        throw new Error(result.error);
+      }
     } catch (error) {
       toast.error('Failed to send message. Please try again.');
+      console.error('Contact form error:', error);
     } finally {
       setIsSubmitting(false);
     }
@@ -80,13 +90,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       label: "Location",
-      value: "Jaipur, INDIA",
-      href: "#"
-    },
-    {
-      icon: Calendar,
-      label: "Schedule Call",
-      value: "Book a meeting",
+      value: "Jaipur, India",
       href: "#"
     }
   ];
@@ -308,6 +312,17 @@ const ContactSection = () => {
                     </div>
                   </motion.a>
                 ))}
+              </div>
+
+              {/* Call Scheduler */}
+              <div className="p-4 rounded-lg bg-background/50 border border-border/20">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h4 className="font-semibold">Prefer to talk?</h4>
+                    <p className="text-sm text-muted-foreground">Schedule a call to discuss your project</p>
+                  </div>
+                  <CallScheduler />
+                </div>
               </div>
 
               {/* Social Links */}

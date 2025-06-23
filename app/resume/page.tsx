@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { 
-  Download, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  Download,
+  Mail,
+  Phone,
+  MapPin,
   Calendar,
   ExternalLink,
   Award,
@@ -29,9 +29,9 @@ const ResumePage = () => {
     email: "princegupta98299@gmail.com",
     phone: "+91 9982844166",
     location: "Jaipur, INDIA",
-    website: "https://alexmorgan.dev",
-    github: "https://github.com/alexmorgan",
-    linkedin: "https://linkedin.com/in/alexmorgan"
+    website: "https://princegupta7.netlify.app/",
+    github: "https://github.com/princegupta007",
+    linkedin: "https://linkedin.com/in/princegupta7"
   };
 
   const experience = [
@@ -153,19 +153,19 @@ const ResumePage = () => {
     // In a real application, this would download the actual PDF
     const link = document.createElement('a');
     link.href = '/resume.pdf'; // This would be the actual PDF file
-    link.download = 'Alex_Morgan_Resume.pdf';
+    link.download = 'Prince_Resume.pdf';
     link.click();
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-20 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-pink-500/5" />
-          
+
           <div className="container mx-auto px-4 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -195,46 +195,46 @@ const ResumePage = () => {
         </section>
 
         {/* Contact Information */}
-        <section className="py-16 border-b border-border/20">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
-              >
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <Mail className="h-8 w-8 text-primary mx-auto mb-3" />
-                    <p className="text-sm text-muted-foreground mb-1">Email</p>
-                    <p className="font-medium">{personalInfo.email}</p>
-                  </CardContent>
-                </Card>
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <Phone className="h-8 w-8 text-primary mx-auto mb-3" />
-                    <p className="text-sm text-muted-foreground mb-1">Phone</p>
-                    <p className="font-medium">{personalInfo.phone}</p>
-                  </CardContent>
-                </Card>
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <MapPin className="h-8 w-8 text-primary mx-auto mb-3" />
-                    <p className="text-sm text-muted-foreground mb-1">Location</p>
-                    <p className="font-medium">{personalInfo.location}</p>
-                  </CardContent>
-                </Card>
-                <Card className="text-center">
-                  <CardContent className="p-6">
-                    <Globe className="h-8 w-8 text-primary mx-auto mb-3" />
-                    <p className="text-sm text-muted-foreground mb-1">Website</p>
-                    <p className="font-medium">alexmorgan.dev</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        <section className="py-16 border-b border-border/20 bg-background">
+  <div className="container mx-auto px-4 lg:px-8">
+    <div className="max-w-4xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
+        <Card className="text-center bg-card shadow-md rounded-lg overflow-hidden">
+          <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+            <Mail className="h-8 w-8 text-primary mb-3" />
+            <p className="text-sm text-muted-foreground mb-1">Email</p>
+            <p className="font-medium text-center break-all">{personalInfo.email}</p>
+          </CardContent>
+        </Card>
+        <Card className="text-center bg-card shadow-md rounded-lg overflow-hidden">
+          <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+            <Phone className="h-8 w-8 text-primary mb-3" />
+            <p className="text-sm text-muted-foreground mb-1">Phone</p>
+            <p className="font-medium text-center">{personalInfo.phone}</p>
+          </CardContent>
+        </Card>
+        <Card className="text-center bg-card shadow-md rounded-lg overflow-hidden">
+          <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+            <MapPin className="h-8 w-8 text-primary mb-3" />
+            <p className="text-sm text-muted-foreground mb-1">Location</p>
+            <p className="font-medium text-center">{personalInfo.location}</p>
+          </CardContent>
+        </Card>
+        <Card className="text-center bg-card shadow-md rounded-lg overflow-hidden">
+          <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+            <Globe className="h-8 w-8 text-primary mb-3" />
+            <p className="text-sm text-muted-foreground mb-1">Website</p>
+            <p className="font-medium text-center break-all">{personalInfo.website || 'https://princegupta7.netlify.app/'}</p>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
         {/* Experience */}
         <section className="py-16">
@@ -273,11 +273,11 @@ const ResumePage = () => {
                             <span className="text-sm font-medium">{job.period}</span>
                           </div>
                         </div>
-                        
+
                         <p className="text-muted-foreground mb-4 leading-relaxed">
                           {job.description}
                         </p>
-                        
+
                         <div className="mb-4">
                           <h4 className="font-semibold mb-2">Key Achievements:</h4>
                           <ul className="space-y-1">
@@ -289,7 +289,7 @@ const ResumePage = () => {
                             ))}
                           </ul>
                         </div>
-                        
+
                         <div className="flex flex-wrap gap-2">
                           {job.technologies.map((tech) => (
                             <Badge key={tech} variant="secondary" className="text-xs">
