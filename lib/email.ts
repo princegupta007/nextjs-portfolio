@@ -28,7 +28,10 @@ export const sendEmail = async (emailData: EmailData) => {
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending email:', error);
-    return { success: false, error: error.message };
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'An unknown error occurred' 
+    };
   }
 };
 
