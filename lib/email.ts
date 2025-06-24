@@ -28,9 +28,10 @@ export const sendEmail = async (emailData: EmailData) => {
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Error sending email:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'An unknown error occurred' 
+    return {
+      success: false,
+      error:
+        error instanceof Error ? error.message : 'An unknown error occurred',
     };
   }
 };
@@ -78,18 +79,26 @@ export const generateContactEmailTemplate = (data: {
             <div class="label">Subject:</div>
             <div class="value">${data.subject}</div>
           </div>
-          ${data.budget ? `
+          ${
+            data.budget
+              ? `
           <div class="field">
             <div class="label">Budget:</div>
             <div class="value">${data.budget}</div>
           </div>
-          ` : ''}
-          ${data.timeline ? `
+          `
+              : ''
+          }
+          ${
+            data.timeline
+              ? `
           <div class="field">
             <div class="label">Timeline:</div>
             <div class="value">${data.timeline}</div>
           </div>
-          ` : ''}
+          `
+              : ''
+          }
           <div class="field">
             <div class="label">Message:</div>
             <div class="value">${data.message.replace(/\n/g, '<br>')}</div>
@@ -146,12 +155,16 @@ export const generateCallScheduleTemplate = (data: {
             <div class="label">Topic:</div>
             <div class="value">${data.topic}</div>
           </div>
-          ${data.message ? `
+          ${
+            data.message
+              ? `
           <div class="field">
             <div class="label">Additional Notes:</div>
             <div class="value">${data.message}</div>
           </div>
-          ` : ''}
+          `
+              : ''
+          }
           <p><strong>What's Next?</strong></p>
           <p>You'll receive a calendar invitation shortly with the meeting details. Please check your email and add this to your calendar.</p>
         </div>

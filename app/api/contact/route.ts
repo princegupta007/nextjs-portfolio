@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { saveContactMessage } from '@/lib/firestore';
 import { sendEmail, generateContactEmailTemplate } from '@/lib/email';
 
-export const dynamic = "force-dynamic"; 
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -93,12 +93,11 @@ export async function POST(request: NextRequest) {
       message: 'Message sent successfully',
       id: saveResult.id,
     });
-
   } catch (error) {
     console.error('Contact form error:', error);
     return NextResponse.json(
       { error: 'Failed to send message' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

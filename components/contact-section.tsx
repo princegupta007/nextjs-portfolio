@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -10,7 +10,17 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
-import { Mail, Phone, MapPin, Send, Loader2, Github, Linkedin, Twitter, Calendar } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Loader2,
+  Github,
+  Linkedin,
+  Twitter,
+  Calendar,
+} from 'lucide-react';
 import CallScheduler from './call-scheduler';
 
 const ContactSection = () => {
@@ -25,16 +35,20 @@ const ContactSection = () => {
     subject: '',
     message: '',
     budget: '',
-    timeline: ''
+    timeline: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -54,14 +68,14 @@ const ContactSection = () => {
       const result = await response.json();
 
       if (result.success) {
-        toast.success('Message sent successfully! I\'ll get back to you soon.');
+        toast.success("Message sent successfully! I'll get back to you soon.");
         setFormData({
           name: '',
           email: '',
           subject: '',
           message: '',
           budget: '',
-          timeline: ''
+          timeline: '',
         });
       } else {
         throw new Error(result.error);
@@ -77,43 +91,43 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
-      value: "princegupta98299@gmail.com",
-      href: "mailto:princegupta98299@gmail.com"
+      label: 'Email',
+      value: 'princegupta98299@gmail.com',
+      href: 'mailto:princegupta98299@gmail.com',
     },
     {
       icon: Phone,
-      label: "Phone",
-      value: "+91 9982844166",
-      href: "tel:9982844166"
+      label: 'Phone',
+      value: '+91 9982844166',
+      href: 'tel:9982844166',
     },
     {
       icon: MapPin,
-      label: "Location",
-      value: "Jaipur, India",
-      href: "#"
-    }
+      label: 'Location',
+      value: 'Jaipur, India',
+      href: '#',
+    },
   ];
 
   const socialLinks = [
     {
       icon: Github,
-      label: "GitHub",
-      href: "https://github.com",
-      color: "hover:text-gray-900 dark:hover:text-gray-100"
+      label: 'GitHub',
+      href: 'https://github.com',
+      color: 'hover:text-gray-900 dark:hover:text-gray-100',
     },
     {
       icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://linkedin.com",
-      color: "hover:text-blue-600"
+      label: 'LinkedIn',
+      href: 'https://linkedin.com',
+      color: 'hover:text-blue-600',
     },
     {
       icon: Twitter,
-      label: "Twitter",
-      href: "https://twitter.com",
-      color: "hover:text-blue-400"
-    }
+      label: 'Twitter',
+      href: 'https://twitter.com',
+      color: 'hover:text-blue-400',
+    },
   ];
 
   const fadeInUp = {
@@ -134,12 +148,12 @@ const ContactSection = () => {
     <section id="contact" className="py-20 lg:py-32 relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-pink-500/5" />
-      
+
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={inView ? 'visible' : 'hidden'}
           variants={staggerContainer}
           className="max-w-6xl mx-auto"
         >
@@ -149,12 +163,11 @@ const ContactSection = () => {
               Get In Touch
             </Badge>
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Let's Work{" "}
-              <span className="text-gradient">Together</span>
+              Let's Work <span className="text-gradient">Together</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind? I'd love to hear about it. 
-              Let's discuss how we can bring your ideas to life.
+              Have a project in mind? I'd love to hear about it. Let's discuss
+              how we can bring your ideas to life.
             </p>
           </motion.div>
 
@@ -164,7 +177,7 @@ const ContactSection = () => {
               <Card className="border-border/20 glass-effect">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold mb-6">Send me a message</h3>
-                  
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -219,8 +232,12 @@ const ContactSection = () => {
                         >
                           <option value="">Select budget range</option>
                           <option value="< $5,000">Less than $5,000</option>
-                          <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                          <option value="$10,000 - $25,000">$10,000 - $25,000</option>
+                          <option value="$5,000 - $10,000">
+                            $5,000 - $10,000
+                          </option>
+                          <option value="$10,000 - $25,000">
+                            $10,000 - $25,000
+                          </option>
                           <option value="$25,000+">$25,000+</option>
                           <option value="Let's discuss">Let's discuss</option>
                         </select>
@@ -286,9 +303,10 @@ const ContactSection = () => {
               <div>
                 <h3 className="text-2xl font-bold mb-6">Let's connect</h3>
                 <p className="text-muted-foreground leading-relaxed mb-8">
-                  I'm always interested in hearing about new projects and opportunities. 
-                  Whether you're looking to build something from scratch or improve an 
-                  existing application, I'd love to help bring your vision to life.
+                  I'm always interested in hearing about new projects and
+                  opportunities. Whether you're looking to build something from
+                  scratch or improve an existing application, I'd love to help
+                  bring your vision to life.
                 </p>
               </div>
 
@@ -299,7 +317,9 @@ const ContactSection = () => {
                     key={info.label}
                     href={info.href}
                     initial={{ opacity: 0, x: -20 }}
-                    animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    animate={
+                      inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
+                    }
                     transition={{ delay: index * 0.1 }}
                     className="flex items-center p-4 rounded-lg bg-background/50 border border-border/20 hover:border-primary/20 transition-all duration-300 hover:shadow-glow group"
                   >
@@ -307,7 +327,9 @@ const ContactSection = () => {
                       <info.icon className="h-5 w-5" />
                     </div>
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-muted-foreground">{info.label}</div>
+                      <div className="text-sm font-medium text-muted-foreground">
+                        {info.label}
+                      </div>
                       <div className="font-semibold">{info.value}</div>
                     </div>
                   </motion.a>
@@ -319,7 +341,9 @@ const ContactSection = () => {
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h4 className="font-semibold">Prefer to talk?</h4>
-                    <p className="text-sm text-muted-foreground">Schedule a call to discuss your project</p>
+                    <p className="text-sm text-muted-foreground">
+                      Schedule a call to discuss your project
+                    </p>
                   </div>
                   <CallScheduler />
                 </div>
@@ -336,7 +360,11 @@ const ContactSection = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       initial={{ opacity: 0, scale: 0 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                      animate={
+                        inView
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0, scale: 0 }
+                      }
                       transition={{ delay: index * 0.1 }}
                       className={`p-3 rounded-full bg-background/50 border border-border/20 text-muted-foreground transition-all duration-300 hover:border-primary/40 hover:shadow-glow ${social.color}`}
                       whileHover={{ scale: 1.1, y: -5 }}
@@ -357,8 +385,9 @@ const ContactSection = () => {
                     Available for new projects
                   </h4>
                   <p className="text-sm text-muted-foreground">
-                    I'm currently accepting new projects and would love to hear about yours. 
-                    Let's schedule a call to discuss your requirements.
+                    I'm currently accepting new projects and would love to hear
+                    about yours. Let's schedule a call to discuss your
+                    requirements.
                   </p>
                 </CardContent>
               </Card>
@@ -377,7 +406,7 @@ const ContactSection = () => {
         transition={{
           duration: 3,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       >
         <div className="text-8xl select-none">🤝</div>

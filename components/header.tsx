@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,15 +18,22 @@ const Header = () => {
 
   useEffect(() => {
     setMounted(true);
-    
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setScrolled(scrollPosition > 50);
 
       // Only track sections on home page
       if (pathname === '/') {
-        const sections = ['home', 'about', 'skills', 'projects', 'testimonials', 'contact'];
-        const currentSection = sections.find(section => {
+        const sections = [
+          'home',
+          'about',
+          'skills',
+          'projects',
+          'testimonials',
+          'contact',
+        ];
+        const currentSection = sections.find((section) => {
           const element = document.getElementById(section);
           if (element) {
             const rect = element.getBoundingClientRect();
@@ -34,7 +41,7 @@ const Header = () => {
           }
           return false;
         });
-        
+
         if (currentSection) {
           setActiveSection(currentSection);
         }
@@ -68,16 +75,17 @@ const Header = () => {
         router.push(`/${href}`);
         return;
       }
-      
+
       const element = document.querySelector(href);
       if (element) {
         const headerHeight = 80;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - headerHeight;
 
         window.scrollTo({
           top: offsetPosition,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
         setIsOpen(false);
       }
@@ -119,10 +127,10 @@ const Header = () => {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'bg-background/95 backdrop-blur-xl shadow-lg border-b border-border/20' 
+        scrolled
+          ? 'bg-background/95 backdrop-blur-xl shadow-lg border-b border-border/20'
           : 'bg-transparent'
       }`}
     >
@@ -137,14 +145,14 @@ const Header = () => {
           >
             <div className="relative">
               <motion.div
-                animate={{ 
+                animate={{
                   rotate: [0, 360],
-                  scale: [1, 1.1, 1]
+                  scale: [1, 1.1, 1],
                 }}
-                transition={{ 
-                  duration: 8, 
-                  repeat: Infinity, 
-                  ease: "linear" 
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: 'linear',
                 }}
                 className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-pink-500 rounded-full blur-lg opacity-30"
               />
@@ -184,7 +192,7 @@ const Header = () => {
                     layoutId="activePage"
                     className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-purple-500 rounded-full"
                     initial={false}
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
               </motion.button>
@@ -215,7 +223,11 @@ const Header = () => {
                         layoutId="activeSection"
                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-purple-500 rounded-full"
                         initial={false}
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 380,
+                          damping: 30,
+                        }}
                       />
                     )}
                   </motion.button>
@@ -236,11 +248,11 @@ const Header = () => {
             >
               <motion.div
                 initial={false}
-                animate={{ 
+                animate={{
                   rotate: theme === 'dark' ? 180 : 0,
-                  scale: theme === 'dark' ? 1.1 : 1
+                  scale: theme === 'dark' ? 1.1 : 1,
                 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
               >
                 {theme === 'dark' ? (
                   <Sun className="h-5 w-5 text-yellow-500" />
@@ -250,9 +262,9 @@ const Header = () => {
               </motion.div>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                animate={{ 
+                animate={{
                   scale: theme === 'dark' ? [1, 1.2, 1] : 1,
-                  opacity: theme === 'dark' ? [0.2, 0.4, 0.2] : 0
+                  opacity: theme === 'dark' ? [0.2, 0.4, 0.2] : 0,
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -266,7 +278,9 @@ const Header = () => {
               transition={{ delay: 0.5 }}
             >
               <Button
-                onClick={() => scrollToSection(pathname === '/' ? '#contact' : '/#contact')}
+                onClick={() =>
+                  scrollToSection(pathname === '/' ? '#contact' : '/#contact')
+                }
                 size="sm"
                 className="relative overflow-hidden bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
               >
@@ -278,8 +292,8 @@ const Header = () => {
                 </motion.span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '0%' }}
                   transition={{ duration: 0.3 }}
                 />
               </Button>
@@ -327,10 +341,10 @@ const Header = () => {
               initial={{ opacity: 0, height: 0, y: -20 }}
               animate={{ opacity: 1, height: 'auto', y: 0 }}
               exit={{ opacity: 0, height: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
               className="lg:hidden overflow-hidden"
             >
-              <motion.nav 
+              <motion.nav
                 className="py-6 px-4 bg-background/95 backdrop-blur-xl border-t border-border/20 rounded-b-2xl shadow-xl"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -391,13 +405,15 @@ const Header = () => {
                   transition={{ delay: 0.4 }}
                 >
                   <Button
-                    onClick={() => scrollToSection(pathname === '/' ? '#contact' : '/#contact')}
+                    onClick={() =>
+                      scrollToSection(
+                        pathname === '/' ? '#contact' : '/#contact',
+                      )
+                    }
                     className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-purple-600 hover:to-pink-600 text-white shadow-lg"
                     size="lg"
                   >
-                    <motion.span
-                      whileHover={{ scale: 1.05 }}
-                    >
+                    <motion.span whileHover={{ scale: 1.05 }}>
                       Get In Touch
                     </motion.span>
                   </Button>
@@ -413,7 +429,7 @@ const Header = () => {
         className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-primary via-purple-500 to-pink-500"
         style={{
           scaleX: scrolled ? 1 : 0,
-          transformOrigin: "left"
+          transformOrigin: 'left',
         }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: scrolled ? 1 : 0 }}

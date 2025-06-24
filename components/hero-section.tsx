@@ -1,30 +1,38 @@
-"use client";
+'use client';
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Github, Linkedin, Mail, Download, Play } from 'lucide-react';
+import {
+  ArrowDown,
+  Github,
+  Linkedin,
+  Mail,
+  Download,
+  Play,
+} from 'lucide-react';
 import { useRef } from 'react';
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"]
+    offset: ['start start', 'end start'],
   });
-  
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   const scrollToContact = () => {
     const element = document.querySelector('#contact');
     if (element) {
       const headerHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - headerHeight;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -33,12 +41,13 @@ const HeroSection = () => {
     const element = document.querySelector('#projects');
     if (element) {
       const headerHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const elementPosition =
+        element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - headerHeight;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   };
@@ -52,7 +61,7 @@ const HeroSection = () => {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-500/5 to-pink-500/5" />
-      
+
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {Array.from({ length: 20 }).map((_, i) => (
@@ -98,10 +107,8 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
           >
-            Full Stack{' '}
-            <span className="text-gradient">Developer</span>
-            <br />
-            & Creative{' '}
+            Full Stack <span className="text-gradient">Developer</span>
+            <br />& Creative{' '}
             <span className="text-gradient-secondary">Innovator</span>
           </motion.h1>
 
@@ -112,8 +119,9 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
           >
-            I craft exceptional digital experiences using cutting-edge technologies, 
-            turning complex problems into elegant, scalable solutions that drive business growth.
+            I craft exceptional digital experiences using cutting-edge
+            technologies, turning complex problems into elegant, scalable
+            solutions that drive business growth.
           </motion.p>
 
           {/* Stats */}
@@ -124,13 +132,17 @@ const HeroSection = () => {
             className="grid grid-cols-3 gap-6 md:gap-12 mb-10 max-w-md mx-auto"
           >
             {[
-              { number: "50+", label: "Projects" },
-              { number: "5+", label: "Years" },
-              { number: "99%", label: "Satisfaction" },
+              { number: '50+', label: 'Projects' },
+              { number: '5+', label: 'Years' },
+              { number: '99%', label: 'Satisfaction' },
             ].map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-2xl md:text-3xl font-bold text-gradient">{stat.number}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
+                <div className="text-2xl md:text-3xl font-bold text-gradient">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </motion.div>
@@ -153,12 +165,12 @@ const HeroSection = () => {
               </span>
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-primary via-purple-500 to-pink-500"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "0%" }}
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '0%' }}
                 transition={{ duration: 0.3 }}
               />
             </Button>
-            
+
             <Button
               size="lg"
               variant="outline"
@@ -178,9 +190,9 @@ const HeroSection = () => {
             className="flex justify-center space-x-6 mb-12"
           >
             {[
-              { icon: Github, href: "#", label: "GitHub" },
-              { icon: Linkedin, href: "#", label: "LinkedIn" },
-              { icon: Download, href: "#", label: "Resume" },
+              { icon: Github, href: '#', label: 'GitHub' },
+              { icon: Linkedin, href: '#', label: 'LinkedIn' },
+              { icon: Download, href: '#', label: 'Resume' },
             ].map((social, index) => (
               <motion.a
                 key={index}
@@ -224,7 +236,7 @@ const HeroSection = () => {
         transition={{
           duration: 4,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       >
         <div className="text-8xl opacity-20 select-none">👋</div>

@@ -1,7 +1,16 @@
-"use client";
+'use client';
 
 import { motion } from 'framer-motion';
-import { Code2, Mail, Phone, MapPin, Github, Linkedin, Heart, ArrowUp } from 'lucide-react';
+import {
+  Code2,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Heart,
+  ArrowUp,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useRouter, usePathname } from 'next/navigation';
 
@@ -40,12 +49,24 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/princegupta007', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/princegupta7/', label: 'LinkedIn' },
+    {
+      icon: Github,
+      href: 'https://github.com/princegupta007',
+      label: 'GitHub',
+    },
+    {
+      icon: Linkedin,
+      href: 'https://www.linkedin.com/in/princegupta7/',
+      label: 'LinkedIn',
+    },
   ];
 
   const contactInfo = [
-    { icon: Mail, value: 'princegupta98299@gmail.com', href: 'mailto:princegupta98299@gmail.com' },
+    {
+      icon: Mail,
+      value: 'princegupta98299@gmail.com',
+      href: 'mailto:princegupta98299@gmail.com',
+    },
     { icon: Phone, value: '+91 9982844166', href: 'tel:+919982844166' },
     { icon: MapPin, value: 'Jaipur, INDIA', href: '#' },
   ];
@@ -58,12 +79,13 @@ const Footer = () => {
         const element = document.querySelector(href);
         if (element) {
           const headerHeight = 80;
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const elementPosition =
+            element.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - headerHeight;
 
           window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth'
+            behavior: 'smooth',
           });
         }
       }
@@ -76,7 +98,7 @@ const Footer = () => {
     <footer className="relative bg-gradient-to-br from-background via-primary/5 to-background border-t border-border/20">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
-      
+
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         {/* Main Footer Content */}
         <div className="py-16 lg:py-20">
@@ -98,12 +120,14 @@ const Footer = () => {
                       transition={{ duration: 2, repeat: Infinity }}
                     />
                   </div>
-                  <span className="text-xl font-bold text-gradient">Prince Gupta</span>
+                  <span className="text-xl font-bold text-gradient">
+                    Prince Gupta
+                  </span>
                 </div>
-                
+
                 <p className="text-muted-foreground leading-relaxed">
-                  Full Stack Developer passionate about creating innovative digital 
-                  experiences that make a meaningful impact.
+                  Full Stack Developer passionate about creating innovative
+                  digital experiences that make a meaningful impact.
                 </p>
 
                 {/* Contact Info */}
@@ -240,7 +264,7 @@ const Footer = () => {
               >
                 Terms of Service
               </motion.a>
-              
+
               {/* Back to Top Button */}
               <Button
                 size="sm"
