@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -7,7 +7,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Dialog, DialogContent, DialogTrigger, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { Calendar, Clock, Loader2, Phone, Video } from 'lucide-react';
 
@@ -22,14 +28,18 @@ const CallScheduler = () => {
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     topic: '',
     message: '',
-    callType: 'video'
+    callType: 'video',
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -49,7 +59,9 @@ const CallScheduler = () => {
       const result = await response.json();
 
       if (result.success) {
-        toast.success('Call scheduled successfully! You\'ll receive a confirmation email shortly.');
+        toast.success(
+          "Call scheduled successfully! You'll receive a confirmation email shortly.",
+        );
         setFormData({
           name: '',
           email: '',
@@ -58,7 +70,7 @@ const CallScheduler = () => {
           timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
           topic: '',
           message: '',
-          callType: 'video'
+          callType: 'video',
         });
         setIsOpen(false);
       } else {
@@ -73,9 +85,24 @@ const CallScheduler = () => {
   };
 
   const timeSlots = [
-    '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-    '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
-    '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'
+    '09:00',
+    '09:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00',
+    '15:30',
+    '16:00',
+    '16:30',
+    '17:00',
+    '17:30',
   ];
 
   const topics = [
@@ -84,7 +111,7 @@ const CallScheduler = () => {
     'Career Advice',
     'Code Review',
     'Collaboration Opportunity',
-    'Other'
+    'Other',
   ];
 
   // Get minimum date (today)
@@ -211,12 +238,8 @@ const CallScheduler = () => {
                     onChange={handleInputChange}
                     className="w-full px-3 py-2 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   >
-                    <option value="video">
-                      📹 Video Call (Google Meet)
-                    </option>
-                    <option value="phone">
-                      📞 Phone Call
-                    </option>
+                    <option value="video">📹 Video Call (Google Meet)</option>
+                    <option value="phone">📞 Phone Call</option>
                   </select>
                 </div>
               </div>
@@ -243,9 +266,14 @@ const CallScheduler = () => {
                 </h4>
                 <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• Calls are typically 30-60 minutes long</li>
-                  <li>• You'll receive a calendar invitation with meeting details</li>
+                  <li>
+                    • You'll receive a calendar invitation with meeting details
+                  </li>
                   <li>• Please join 2-3 minutes before the scheduled time</li>
-                  <li>• Feel free to reschedule if needed by replying to the confirmation email</li>
+                  <li>
+                    • Feel free to reschedule if needed by replying to the
+                    confirmation email
+                  </li>
                 </ul>
               </div>
 

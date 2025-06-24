@@ -1,17 +1,17 @@
-import { 
-  collection, 
-  doc, 
-  addDoc, 
-  updateDoc, 
-  deleteDoc, 
-  getDocs, 
-  getDoc, 
-  query, 
-  where, 
-  orderBy, 
+import {
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  getDocs,
+  getDoc,
+  query,
+  where,
+  orderBy,
   limit,
   startAfter,
-  Timestamp 
+  Timestamp,
 } from 'firebase/firestore';
 import { db } from './firebase';
 
@@ -28,7 +28,9 @@ export interface ContactMessage {
   createdAt: Timestamp;
 }
 
-export const saveContactMessage = async (data: Omit<ContactMessage, 'id' | 'status' | 'createdAt'>) => {
+export const saveContactMessage = async (
+  data: Omit<ContactMessage, 'id' | 'status' | 'createdAt'>,
+) => {
   try {
     const docRef = await addDoc(collection(db, 'contacts'), {
       ...data,
@@ -38,7 +40,10 @@ export const saveContactMessage = async (data: Omit<ContactMessage, 'id' | 'stat
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error('Error saving contact message:', error);
-    return { success: false, error: error instanceof Error ? error.message : String(error) };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    };
   }
 };
 
@@ -56,7 +61,9 @@ export interface CallSchedule {
   createdAt: Timestamp;
 }
 
-export const scheduleCall = async (data: Omit<CallSchedule, 'id' | 'status' | 'createdAt'>) => {
+export const scheduleCall = async (
+  data: Omit<CallSchedule, 'id' | 'status' | 'createdAt'>,
+) => {
   try {
     const docRef = await addDoc(collection(db, 'calls'), {
       ...data,
@@ -66,7 +73,10 @@ export const scheduleCall = async (data: Omit<CallSchedule, 'id' | 'status' | 'c
     return { success: true, id: docRef.id };
   } catch (error) {
     console.error('Error scheduling call:', error);
-    return { success: false, error: error instanceof Error ? error.message : String(error) };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    };
   }
 };
 
@@ -87,12 +97,15 @@ export interface BlogPost {
   updatedAt: Timestamp;
 }
 
-export const getBlogPosts = async (featured?: boolean, limit_count?: number) => {
+export const getBlogPosts = async (
+  featured?: boolean,
+  limit_count?: number,
+) => {
   try {
     let q = query(
       collection(db, 'blogs'),
       where('published', '==', true),
-      orderBy('createdAt', 'desc')
+      orderBy('createdAt', 'desc'),
     );
 
     if (featured) {
@@ -105,7 +118,7 @@ export const getBlogPosts = async (featured?: boolean, limit_count?: number) => 
 
     const querySnapshot = await getDocs(q);
     const posts: BlogPost[] = [];
-    
+
     querySnapshot.forEach((doc) => {
       posts.push({ id: doc.id, ...doc.data() } as BlogPost);
     });
@@ -113,7 +126,11 @@ export const getBlogPosts = async (featured?: boolean, limit_count?: number) => 
     return { success: true, posts };
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    return { success: false, error: error instanceof Error ? error.message : String(error), posts: [] };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+      posts: [],
+    };
   }
 };
 
@@ -150,7 +167,7 @@ export const getResources = async (category?: string, featured?: boolean) => {
 
     const querySnapshot = await getDocs(q);
     const resources: Resource[] = [];
-    
+
     querySnapshot.forEach((doc) => {
       resources.push({ id: doc.id, ...doc.data() } as Resource);
     });
@@ -158,7 +175,11 @@ export const getResources = async (category?: string, featured?: boolean) => {
     return { success: true, resources };
   } catch (error) {
     console.error('Error fetching resources:', error);
-    return { success: false, error: error instanceof Error ? error.message : String(error), resources: [] };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+      resources: [],
+    };
   }
 };
 
@@ -187,15 +208,22 @@ export const getSiteSettings = async () => {
   try {
     const docRef = doc(db, 'settings', 'site');
     const docSnap = await getDoc(docRef);
-    
+
     if (docSnap.exists()) {
-      return { success: true, settings: { id: docSnap.id, ...docSnap.data() } as SiteSettings };
+      return {
+        success: true,
+        settings: { id: docSnap.id, ...docSnap.data() } as SiteSettings,
+      };
     } else {
       return { success: false, error: 'Settings not found', settings: null };
     }
   } catch (error) {
     console.error('Error fetching site settings:', error);
-    return { success: false, error: error instanceof Error ? error.message : String(error), settings: null };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+      settings: null,
+    };
   }
 };
 
@@ -204,25 +232,28 @@ export const trackResourceDownload = async (resourceId: string) => {
   try {
     const resourceRef = doc(db, 'resources', resourceId);
     const resourceSnap = await getDoc(resourceRef);
-    
+
     if (resourceSnap.exists()) {
       const currentDownloads = resourceSnap.data().downloads || 0;
       await updateDoc(resourceRef, {
-        downloads: currentDownloads + 1
+        downloads: currentDownloads + 1,
       });
     }
-    
+
     // Track in analytics collection
     await addDoc(collection(db, 'analytics'), {
       type: 'download',
       resourceId,
       timestamp: Timestamp.now(),
     });
-    
+
     return { success: true };
   } catch (error) {
     console.error('Error tracking download:', error);
-    return { success: false, error: error instanceof Error ? error.message : String(error) };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    };
   }
 };
 
@@ -236,6 +267,9 @@ export const trackPageView = async (page: string) => {
     return { success: true };
   } catch (error) {
     console.error('Error tracking page view:', error);
-    return { success: false, error: error instanceof Error ? error.message : String(error) };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : String(error),
+    };
   }
 };

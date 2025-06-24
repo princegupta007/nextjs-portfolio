@@ -14,7 +14,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const app =
+  getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 // Initialize Firebase services
 export const db = getFirestore(app);
@@ -22,6 +23,7 @@ export const auth = getAuth(app);
 export const storage = getStorage(app);
 
 // Initialize Analytics (only on client side)
-export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
+export const analytics =
+  typeof window !== 'undefined' ? getAnalytics(app) : null;
 
 export default app;
