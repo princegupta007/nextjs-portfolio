@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { saveContactMessage } from '@/lib/firestore';
 import { sendEmail, generateContactEmailTemplate } from '@/lib/email';
 
+export const dynamic = "force-dynamic"; 
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -48,7 +50,6 @@ export async function POST(request: NextRequest) {
 
     if (!emailResult.success) {
       console.error('Failed to send email:', emailResult.error);
-      // Don't fail the request if email fails, just log it
     }
 
     // Send confirmation email to user
